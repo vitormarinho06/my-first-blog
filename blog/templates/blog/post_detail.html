@@ -1,13 +1,39 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <div class="post">
-        {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
+    <div class="col-md-12 col-lg-8 main-content">
+            <img src="/media/{{ post.photo }}" alt="Image" class="img-fluid mb-5">
+             <div class="post-meta">
+                        <span class="mr-2">{{ post.published_date }}</span>
+                        
+             </div>
+            <h1 class="mb-4">{{ post.title }}</h1>
+            <a class="category mb-5" href="#">Food</a> <a class="category mb-5" href="#">Travel</a>
+           
+            <div class="post-content-body">
+              {{ post.text|safe}}
             </div>
-        {% endif %}
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.text|safe }}</p>
+
+
+
+            
+            <div class="pt-5">
+              <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
+            </div>
+
+
+            <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5" data-width=""></div>
+            <div class="fb-share-button" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2Fpost%2F1%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartilhar</a></div>
+              <!-- END comment-list -->
+              
+            
+
     </div>
 {% endblock %}
+
+{% block carrousel %}
+{% endblock %}
+
+{% block content_head %}
+{% endblock %}
+
