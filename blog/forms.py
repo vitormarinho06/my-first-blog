@@ -1,6 +1,7 @@
 from django import forms
 
 class Subscribe(forms.Form):
-    Email = forms.EmailField()
-    subject = forms.CharField(label='Assunto')
-    message = forms.CharField(help_text='Write here your message!', max_length=500, widget=forms.Textarea())
+    name = forms.CharField(max_length=100)
+    Email = forms.EmailField(required=True)
+    subject = forms.CharField(label='Assunto',required=True)
+    message = forms.CharField(label='Escreva sua mensagem!', max_length=500, widget=forms.Textarea(), required=True)

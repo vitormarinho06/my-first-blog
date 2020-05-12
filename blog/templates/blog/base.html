@@ -67,11 +67,10 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="category.html" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
                   <div class="dropdown-menu" aria-labelledby="dropdown05">
-                    <a class="dropdown-item" href="category.html">Lifestyle</a>
-                    <a class="dropdown-item" href="category.html">Food</a>
-                    <a class="dropdown-item" href="category.html">Adventure</a>
-                    <a class="dropdown-item" href="category.html">Travel</a>
-                    <a class="dropdown-item" href="category.html">Business</a>
+
+                    {% for i in categories %}
+                      <a class="dropdown-item" href="{% url 'category_detail' slug=i.slug %}">{{i.name}}</a>
+                    {% endfor %}
                   </div>
 
                 </li>
@@ -79,7 +78,7 @@
                   <a class="nav-link" href="/sobre/">Sobre</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contato</a>
+                  <a class="nav-link" href="/email/">Contato</a>
                 </li>
               </ul>
               
@@ -337,8 +336,8 @@
                   
 
                   <div class="bio-body">
-                    <h2>David Craig</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
+                    <h2>Wellington Marinho</h2>
+                    <p>Fotógrafo amador apaixonado pela Natureza.</p>
                     <p><a href="/sobre/" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
                     <p class="social">
                       <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
