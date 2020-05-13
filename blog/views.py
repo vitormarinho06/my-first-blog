@@ -13,9 +13,10 @@ from . import forms
 
 
 def category_detail(request, slug):
-    category = get_object_or_404(Category, slug=slug)
+    some_category = Category.objects.get(slug=slug)
+    categories_post = Post.objects.filter(category = some_category)
 
-    return render(request, 'blog/category_detail.html', {'category': category}) # in this template, you will have access to category and posts under that category by (category.post_set).
+    return render(request, 'blog/category_list.html', {'categories_post': categories_post}) # in this template, you will have access to category and posts under that category by (category.post_set).
 
 def post_list(request):
 	#return render(request, 'blog/post_list.html', {'posts': posts})

@@ -1,6 +1,8 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+
+
     <div class="col-md-12 col-lg-8 main-content">
             <img src="/media/{{ post.photo }}" alt="Image" class="img-fluid mb-5">
              <div class="post-meta">
@@ -8,7 +10,7 @@
                         
              </div>
             <h1 class="mb-4">{{ post.title }}</h1>
-            <a class="category mb-5" href="#">Food</a> <a class="category mb-5" href="#">Travel</a>
+            <a class="category mb-5" href="{% url 'category_detail' slug=post.category %}">{{post.category}}</a>
            
             <div class="post-content-body">
               {{ post.text|safe}}
@@ -18,7 +20,7 @@
 
             
             <div class="pt-5">
-              <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
+              <p>Categories: <a href="{% url 'category_detail' slug=post.category %}"> {{post.category}} </a></p>
             </div>
 
 
@@ -29,11 +31,12 @@
             
 
     </div>
+
 {% endblock %}
 
 {% block carrousel %}
 {% endblock %}
 
-{% block content_head %}
+{% block head %}
 {% endblock %}
 

@@ -5,6 +5,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from taggit.managers import TaggableManager
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -33,7 +34,7 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.CASCADE)
-    slug = models.SlugField(unique=True, blank=True, null=True)
+    tags = TaggableManager()
     photo = models.ImageField(upload_to='images/', null = True, blank = True)
     text = RichTextField(blank=True,null=True)
     created_date = models.DateTimeField(default=timezone.now)
