@@ -12,39 +12,23 @@ from . import forms
 # Create your views here.
 
 
-
-
 def category_detail(request, slug):
     category = get_object_or_404(Category, slug=slug)
 
     return render(request, 'blog/category_detail.html', {'category': category}) # in this template, you will have access to category and posts under that category by (category.post_set).
 
 def post_list(request):
-	posts_list = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-	page = request.GET.get('page', 1)
-	paginator = Paginator(posts_list, 8)
-	try:
-		posts = paginator.page(page)
-	except PageNotAnInteger:
-		posts = paginator.page(1)
-	except EmptyPage:
-		posts = paginator.page(paginator.num_pages)
-	categories = Category.objects.all()
-
 	#return render(request, 'blog/post_list.html', {'posts': posts})
-	return render(request, 'blog/post_list.html', {'posts': posts,'categories': categories})
+	return render(request, 'blog/base.html')
 
 
 def post_detail(request, pk):
 	post = get_object_or_404(Post, pk=pk)
-	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-	categories = Category.objects.all()
-	return render(request, 'blog/post_detail.html', {'post': post,'posts': posts,'categories': categories})
+	return render(request, 'blog/post_detail.html', {'post': post})
+
 
 def sobre(request):
-	posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-	categories = Category.objects.all()
-	return render(request, 'blog/sobre.html', {'posts': posts,'categories': categories})
+	return render(request, 'blog/sobre.html')
 
 
 def subscribe(request):

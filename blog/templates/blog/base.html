@@ -12,8 +12,13 @@
 	<link rel="stylesheet" href="{% static 'css/animate.css' %}">	
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'fonts/ionicons/css/ionicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/fontawesome/css/font-awesome.min.css' 
-    %}">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
     <link href="{% static 'fonts/flaticon/font/flaticon.css' %}">
 
     <!-- Theme Style -->
@@ -88,235 +93,98 @@
       </header>
       <!-- END header -->
       {% block carrousel %}
-      <section class="site-section pt-5 pb-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
+        <section class="site-section pt-5 pb-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
 
-              <div class="owl-carousel owl-theme home-slider">
+                <div class="owl-carousel owl-theme home-slider">
+                  {% for post in posts|slice:":3" %}
+                    <div>
+                      <a href="{% url 'post_detail' pk=post.pk %}" class="a-block d-flex align-items-center height-lg" style="background-image: url(/media/{{ post.photo }}); ">
+                        <div class="text half-to-full">
+                          <div class="post-meta">
+                            <span class="mr-2">{{ post.published_date }}</span>
+                          </div>
+                          <h3>{{ post.title }}</h3>
+                          <div>{{ post.text|truncatechars_html:160|safe }}</div>
+                        </div>
+                      </a>
+                    </div>
+                  {% endfor %}
+                </div>
                 
-                <div>
-                  <a href="blog-single.html" class="a-block d-flex align-items-center height-lg" style="background-image: url({% static 'images/img_1.jpg' %}); ">
-
-                    <div class="text half-to-full">
-                      <span class="category mb-5">Food</span>
-                      <div class="post-meta">
-                        
-                        <span class="author mr-2"><img src="{% static 'images/person_1.jpg'%}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                        
-                      </div>
-                      <h3>How to Find the Video Games of Your Youth</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem nobis, ut dicta eaque ipsa laudantium!</p>
-                    </div>
-                  </a>
-                </div>
-                <div>
-                  <a href="blog-single.html" class="a-block d-flex align-items-center height-lg" style="background-image: url('images/img_2.jpg'); ">
-                    <div class="text half-to-full">
-                      <span class="category mb-5">Travel</span>
-                      <div class="post-meta">
-                        
-                        <span class="author mr-2"><img src="{% static 'images/person_1.jpg'%}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                        
-                      </div>
-                      <h3>How to Find the Video Games of Your Youth</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem nobis, ut dicta eaque ipsa laudantium!</p>
-                    </div>
-                  </a>
-                </div>
-                <div>
-                  <a href="blog-single.html" class="a-block d-flex align-items-center height-lg" style="background-image: url('images/img_3.jpg'); ">
-                    <div class="text half-to-full">
-                      <span class="category mb-5">Sports</span>
-                      <div class="post-meta">
-                        
-                        <span class="author mr-2"><img src="{% static 'images/person_1.jpg' %}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                        
-                      </div>
-                      <h3>How to Find the Video Games of Your Youth</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem nobis, ut dicta eaque ipsa laudantium!</p>
-                    </div>
-                  </a>
-                </div>
-              
               </div>
-              
             </div>
+            
           </div>
-          
-        </div>
-
-
-      </section>
+        </section>
       {% endblock %}
       <!-- END section -->
 
-      <section class="site-section py-sm">
+      <section class="site-section">
         <div class="container">
           <div class="row">
-            {% block content_head %}
+            {% block head %}
             <div class="col-md-6">
               <h2 class="mb-4">Últimas Postagens</h2>
             </div>
             {% endblock %}
           </div>
+
           <div class="row blog-entries">
+
             {% block content %}
-            <div class="col-md-12 col-lg-8 main-content">
+              <div class="col-md-12 col-lg-8 main-content">
 
-                       
+                <div class="row">
 
-              <div class="row">
+                  {% for post in posts %}
+                    <div class="col-md-6">
+                      <a class="blog-entry element-animate" data-animate-effect="fadeIn" href="{% url 'post_detail' pk=post.pk %}">
+                        <img src="/media/{{ post.photo }}" alt="Image placeholder">
+                        <div class="blog-content-body">
+                          <div class="post-meta">
+                            <span class="date">{{ post.published_date }}</span>
+                            <h2>{{ post.title }}</h2>
+                          </div>
+                        </div>
 
-              
-
-                <div class="col-md-6">
-                  <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                    <img src="{% static 'images/img_5.jpg' %}" alt="Image placeholder">
-                    <div class="blog-content-body">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{% static 'images/person_1.jpg' %}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>How to Find the Video Games of Your Youth</h2>
+                      </a>
                     </div>
-                  </a>
-                </div>
-                <div class="col-md-6">
-                  <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                    <img src="{% static 'images/img_6.jpg' %}" alt="Image placeholder">
-                    <div class="blog-content-body">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{% static 'images/person_1.jpg' %}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>How to Find the Video Games of Your Youth</h2>
-                    </div>
-                  </a>
-                </div>
+                  {% endfor %}
 
-                <div class="col-md-6">
-                  <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                    <img src="{% static "/images/img_7.jpg" %}" alt="Image placeholder">
-                    <div class="blog-content-body">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{% static 'images/person_1.jpg' %}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>How to Find the Video Games of Your Youth</h2>
-                    </div>
-                  </a>
                 </div>
-                <div class="col-md-6">
-                  <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                    <img src="{% static 'images/img_8.jpg' %}" alt="Image placeholder">
-                    <div class="blog-content-body">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{% static 'images/person_1.jpg' %}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>How to Find the Video Games of Your Youth</h2>
-                    </div>
-                  </a>
-                </div>
-
-                <div class="col-md-6">
-                  <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                    <img src="{% static 'images/img_9.jpg' %}" alt="Image placeholder">
-                    <div class="blog-content-body">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{% static 'images/person_1.jpg' %}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>How to Find the Video Games of Your Youth</h2>
-                    </div>
-                  </a>
-                </div>
-                <div class="col-md-6">
-                  <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                    <img src="{% static 'images/img_10.jpg' %}" alt="Image placeholder">
-                    <div class="blog-content-body">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{% static 'images/person_1.jpg' %}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>How to Find the Video Games of Your Youth</h2>
-                    </div>
-                  </a>
-                </div>
-
-                <div class="col-md-6">
-                  <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                    <img src="{% static 'images/img_11.jpg' %}" alt="Image placeholder">
-                    <div class="blog-content-body">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{% static 'images/person_1.jpg' %}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>How to Find the Video Games of Your Youth</h2>
-                    </div>
-                  </a>
-                </div>
-                <div class="col-md-6">
-                  <a href="blog-single.html" class="blog-entry element-animate" data-animate-effect="fadeIn">
-                    <img src="{% static 'images/img_12.jpg' %}" alt="Image placeholder">
-                    <div class="blog-content-body">
-                      <div class="post-meta">
-                        <span class="author mr-2"><img src="{% static 'images/person_1.jpg' %}" alt="Colorlib"> Colorlib</span>&bullet;
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>How to Find the Video Games of Your Youth</h2>
-                    </div>
-                  </a>
-                </div>
-                
-
-              </div>
-              
-
-              <div class="row mt-5">
-                <div class="col-md-12 text-center">
-                  <nav aria-label="Page navigation" class="text-center">
-                    {% block pagination_block %}
-                    <ul class="pagination">
-                      <li class="page-item  active"><a class="page-link" href="#">&lt;</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">4</a></li>
-                      <li class="page-item"><a class="page-link" href="#">5</a></li>
-                      <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
-                    </ul>
-                    {% endblock %}
-                  </nav>
-                </div>
-
+                {% if posts.has_other_pages%}
+            
+                <ul class="pagination">
+                  {% if posts.has_previous %}
+                    <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+                  {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                  {% endif %}
+                  {% for i in posts.paginator.page_range %}
+                    {% if posts.number == i %}
+                      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                      <li><a  class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                  {% if posts.has_next %}
+                        <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                      <li class="disabled"><span>&lt;</span></li>
+                    {% endif %}
+                </ul>
+                {% endif %}
               
               </div>
-
-
-
-
-              
-
-              
-
-            </div>
             {% endblock %}
+              
+
+              
+              
+            
 
             <!-- END main-content -->
 
@@ -394,11 +262,10 @@
               <div class="sidebar-box">
                 <h3 class="heading">Categories</h3>
                 <ul class="categories">
-                  <li><a href="/categorias/">Food <span>(12)</span></a></li>
-                  <li><a href="#">Travel <span>(22)</span></a></li>
-                  <li><a href="#">Lifestyle <span>(37)</span></a></li>
-                  <li><a href="#">Business <span>(42)</span></a></li>
-                  <li><a href="#">Adventure <span>(14)</span></a></li>
+                  {% for i in categories %}
+                    <li><a href="{% url 'category_detail' slug=i.slug %}">{{i.name}}</a><li>
+                  {% endfor %}
+
                 </ul>
               </div>
               <!-- END sidebar-box -->
@@ -497,9 +364,7 @@
           <div class="row">
             <div class="col-md-12 text-center">
               <p class="small">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy; <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All Rights Reserved | This template is made with <i class="fa fa-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            
             </p>
             </div>
           </div>
@@ -513,13 +378,11 @@
     <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
 
 
-    <script src="{% static "js/jquery-3.2.1.min.js" %}"></script>
-    <script src="{% static "js/jquery-migrate-3.0.0.js" %}"></script>
-    <script src="{% static "js/popper.min.js" %}"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/owl.carousel.min.js" %}"></script>
-    <script src="{% static "js/jquery.waypoints.min.js" %}"></script>
-    <script src="{% static "js/jquery.stellar.min.js" %}"></script>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
 
 
