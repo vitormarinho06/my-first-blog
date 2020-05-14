@@ -14,9 +14,11 @@ from . import forms
 
 def category_detail(request, slug):
     some_category = Category.objects.get(slug=slug)
-    categories_post = Post.objects.filter(category = some_category)
+    categories_post = Post.objects.filter(categories = some_category)
 
     return render(request, 'blog/category_list.html', {'categories_post': categories_post}) # in this template, you will have access to category and posts under that category by (category.post_set).
+
+
 
 def post_list(request):
 	#return render(request, 'blog/post_list.html', {'posts': posts})
@@ -25,7 +27,8 @@ def post_list(request):
 
 def post_detail(request, pk):
 	post = get_object_or_404(Post, pk=pk)
-	return render(request, 'blog/post_detail.html', {'post': post})
+	post_categories = post.categories.all()
+	return render(request, 'blog/post_detail.html', {'post': post,'post_categories':post_categories})
 
 
 def sobre(request):

@@ -10,8 +10,9 @@
                         
              </div>
             <h1 class="mb-4">{{ post.title }}</h1>
-            <a class="category mb-5" href="{% url 'category_detail' slug=post.category %}">{{post.category}}</a>
-           
+            {%for category in post_categories%}
+            <a class="category mb-5" href="{% url 'category_detail' slug=category %}">{{category}}</a>
+            {% endfor %}
             <div class="post-content-body">
               {{ post.text|safe}}
             </div>
@@ -20,7 +21,11 @@
 
             
             <div class="pt-5">
-              <p>Categories: <a href="{% url 'category_detail' slug=post.category %}"> {{post.category}} </a></p>
+              <p>Categories: 
+                {%for category in post_categories%}
+                <a href="{% url 'category_detail' slug=category %}"> {{category}} </a>
+                 {% endfor %}
+              </p>
             </div>
 
 
