@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.text import slugify 
+
 
 # Create your models here.
 
@@ -9,7 +11,11 @@ from ckeditor.fields import RichTextField
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
-    slug = models.SlugField(blank=True, null=True)
+    slug = models.SlugField(blank=True, null=True, editable=False)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
     
 
     class Meta:

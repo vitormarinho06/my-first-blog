@@ -11,7 +11,7 @@
              </div>
             <h1 class="mb-4">{{ post.title }}</h1>
             {%for category in post_categories%}
-            <a class="category mb-5" href="{% url 'category_detail' slug=category %}">{{category}}</a>
+            <a class="category mb-5" href="{% url 'category_detail' slug=category.slug %}">{{category.name}}</a>
             {% endfor %}
             <div class="post-content-body">
               {{ post.text|safe}}
@@ -23,7 +23,7 @@
             <div class="pt-5">
               <p>Categories: 
                 {%for category in post_categories%}
-                <a href="{% url 'category_detail' slug=category %}"> {{category}} </a>
+                <a href="{% url 'category_detail' slug=category.slug %}"> {{category.name}} </a>
                  {% endfor %}
               </p>
             </div>
